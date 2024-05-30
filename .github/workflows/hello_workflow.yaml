@@ -1,12 +1,17 @@
-name: branch_checkout
+name: Combine the words
 on: [push]
+
 jobs:
-  external-workflow:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          repository: abystoma/external-workflow
-          ref: branch
-      - name: Greetings
-        run: echo "$(<greetings.txt)"
+  job1:
+    env:
+      BUILD: build
+    runs-on: windows-latest
+    steps: 
+      - name: step 1
+        env:
+          TEST: test
+        run: echo "GitHub Actions is a CI/CD platform that allows you to automate your $env:BUILD $env:TEST pipeline"   
+      - name: step 2
+        env:
+          DEPLOY: deployment
+        run: echo "GitHub Actions is a CI/CD platform that allows you to automate your $env:BUILD $env:TEST and $env:DEPLOY pipeline"   
